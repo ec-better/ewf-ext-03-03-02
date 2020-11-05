@@ -1,0 +1,21 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="application">
+  <jobTemplates>
+    <jobTemplate id="notebook">
+      <streamingExecutable>/application/notebook/run</streamingExecutable>
+      <defaultParameters><parameter id="start_year" title="start year" abstract="start year" maxOccurs="1" scope="runtime" type="LiteralData">2015</parameter><parameter id="end_year" title="end_year" abstract="end_year" maxOccurs="1" scope="runtime" type="LiteralData">2019</parameter><parameter id="areaOfInterest" title="Area of the region" abstract="Area of the region of interest" maxOccurs="1" scope="runtime" type="LiteralData">IberianPeninsula</parameter><parameter id="regionOfInterest" title="WKT Polygon for the Region of Interest (-1 if no crop)" abstract="Set the value of WKT Polygon" maxOccurs="1" scope="runtime" type="LiteralData">POLYGON((11.5030755518998 -11.1141633706909,41.0343255518998 -11.1141633706909,41.0343255518998 -34.9763656693858,11.5030755518998 -34.9763656693858,11.5030755518998 -11.1141633706909))</parameter></defaultParameters>
+     <defaultJobconf>
+        <property id="mapred.task.timeout">9900000000000</property>
+        <property id="ciop.job.max.tasks">1</property> 
+     </defaultJobconf>
+    </jobTemplate>
+  </jobTemplates>
+  <workflow id="ewf-ext-03-03-02" title="ewf-ext-03-03-02 - Flood exposure" abstract="ewf-ext-03-03-02 - Flood exposure">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="notebook">
+      <job id="notebook"/>
+      <sources>
+        <source id="source" title="Input references" abstract="Input references" refid="string:list" scope="runtime">https://catalog.terradue.com/chirps/search?format=atom&amp;uid=chirps-v2.0.2017.01.01,https://catalog.terradue.com/chirps/search?format=atom&amp;uid=chirps-v2.0.2017.01.02</source>
+      </sources>
+    </node>
+  </workflow>
+</application>
